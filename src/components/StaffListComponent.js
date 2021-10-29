@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Media } from 'reactstrap';
+import { Card, CardImg, CardText, CardTitle } from 'reactstrap';
 import { STAFFS } from '../shared/staffs'
 
 class StaffList extends Component {
@@ -8,34 +8,51 @@ class StaffList extends Component {
         super(props);
 
         this.state = {
-            staffs: [
-                STAFFS
-            ]
+            selectedStaff: null
         }
     }
 
+    onStaffSelect(staff) {
+        this.setState({ selectedStaff: staff });
+    }
+
+    renderStaff(staff) {
+        if (staff != null)
+            return(
+                <Card>
+                    <CardTitle>
+                        {staff.name}
+                    </CardTitle>
+                </Card>
+            );
+        else
+            return(
+                <div></div>
+            )
+    }
+
     render() {
-        const staffList = this.state.staffs.map((staff) => {
+        const list = this.props.staffs.map((staff) => {
             return (
                 <div key={staff.id} className="col-12 col-md-5 m-1">
-                    <Media tag="li">
-                        <Media left middle>
-                            
-                        </Media>
-                    </Media>
+                    <Card onClick={() => this.onStaffSelect(staff)}>
+                        <CardTitle>{staff.name}</CardTitle>
+                    </Card>
                 </div>
-            );
+                
+            )
         });
 
         return (
             <div className="container">
                 <div className="row">
-                    <Media list>
-                        {staffList}
-                    </Media>
+                    {list}
                 </div>
+                <h5 className="">Bấm vào tên nhân viên để xem thông tin.</h5>
+
             </div>
-        ); 
+        )
+        
     }
 
 }
