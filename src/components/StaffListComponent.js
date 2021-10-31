@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardTitle } from 'reactstrap';
-import { STAFFS } from '../shared/staffs'
+import { Card, /*CardImg, CardText,*/ CardTitle } from 'reactstrap';
+// import { STAFFS } from '../shared/staffs'
 
 class StaffList extends Component {
 
