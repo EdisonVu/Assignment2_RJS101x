@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, /*CardImg, CardText,*/ CardTitle } from 'reactstrap';
 // import { STAFFS } from '../shared/staffs'
+import StaffDetail from './StaffDetailComponent';
 
 class StaffList extends Component {
 
@@ -16,20 +17,20 @@ class StaffList extends Component {
         this.setState({ selectedStaff: staff });
     }
 
-    renderStaff(staff) {
-        if (staff != null)
-            return(
-                <Card>
-                    <CardTitle>
-                        {staff.name}
-                    </CardTitle>
-                </Card>
-            );
-        else
-            return(
-                <div></div>
-            )
-    }
+    // renderStaff(staff) {
+    //     if (staff != null)
+    //         return(
+    //             <Card>
+    //                 <CardTitle>
+    //                     {staff.name}
+    //                 </CardTitle>
+    //             </Card>
+    //         );
+    //     else
+    //         return(
+    //             <div></div>
+    //         )
+    // }
 
     render() {
         const list = this.props.staffs.map((staff) => {
@@ -49,9 +50,11 @@ class StaffList extends Component {
                     {list}
                 </div>
                 <h5 className="">Bấm vào tên nhân viên để xem thông tin.</h5>
-
+                <div className="row">
+                    <StaffDetail selectedStaff={this.state.selectedStaff} />
+                </div>
             </div>
-        )
+        );
         
     }
 
