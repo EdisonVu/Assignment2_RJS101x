@@ -4,10 +4,6 @@ import dateFormat from 'dateformat'
 
 class StaffDetail extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     renderStaff(staff) {
         
         if (staff != null)
@@ -18,7 +14,7 @@ class StaffDetail extends Component {
                         <CardTitle>{staff.name}</CardTitle>
                         <CardText>Ngày sinh: {dateFormat(staff.doB, "dd/mm/yyyy")}</CardText>
                         <CardText>Ngày vào công ty: {dateFormat(staff.startDate, "dd/mm/yyyy")}</CardText>
-                        {/* <CardText>Phòng ban: {staff.department}</CardText> */}
+                        <CardText>Phòng ban: {staff.department.name}</CardText>
                         <CardText>Số ngày nghỉ còn lại: {staff.annualLeave}</CardText>
                         <CardText>Số ngày đã làm thêm: {staff.overTime}</CardText>
                     </CardBody>
