@@ -17,21 +17,6 @@ class StaffList extends Component {
         this.setState({ selectedStaff: staff });
     }
 
-    // renderStaff(staff) {
-    //     if (staff != null)
-    //         return(
-    //             <Card>
-    //                 <CardTitle>
-    //                     {staff.name}
-    //                 </CardTitle>
-    //             </Card>
-    //         );
-    //     else
-    //         return(
-    //             <div></div>
-    //         )
-    // }
-
     render() {
         const list = this.props.staffs.map((staff) => {
             return (
