@@ -1,48 +1,50 @@
-import React, { Component } from 'react';
-import { Card, /*CardImg, CardText,*/ CardTitle } from 'reactstrap';
-// import { STAFFS } from '../shared/staffs'
-import StaffDetail from './StaffDetailComponent';
+import React from "react";
+import { Card, CardImg, CardTitle, Breadcrumb, BreadcrumbItem } from "reactstrap";
+import { Link } from 'react-router-dom';
 
-class StaffList extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            selectedStaff: null
-        }
+    function RenderStaff({ staff }) {
+        return(
+            <Card className="App">
+                <Link to={`/nhan-vien/${staff.id}`} >
+                    <CardImg width="100%" src={staff.image} alt={staff.name} />
+                    <CardTitle>{staff.name}</CardTitle>
+                </Link>
+            </Card>
+        );
     }
 
-    onStaffSelect(staff) {
-        this.setState({ selectedStaff: staff });
-    }
+    const StaffList = (props) => {
 
-    render() {
-        const list = this.props.staffs.map((staff) => {
+        const staffList = props.staffs.map((staff) => {
             return (
-                <div key={staff.id} className="col-md-4 col-sm-6 col-xs-12">
-                    <Card onClick={() => this.onStaffSelect(staff)}>
-                        <CardTitle>{staff.name}</CardTitle>
-                    </Card>
+                <div key={staff.id} className="col-md-2 col-sm-4 col-6">
+                    <RenderStaff staff={staff} />
                 </div>
-                
-            )
+            );
         });
 
         return (
             <div className="container">
                 <div className="row">
-                    {list}
+                    <Breadcrumb>
+                        <BreadcrumbItem>
+                            <Link to='/nhan-vien'>App</Link>
+                        </BreadcrumbItem>
+                        <BreadcrumbItem active>
+                            Nhân Viên
+                        </BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>Nhân Viên</h3>
+                        <hr />
+                    </div>
                 </div>
-                <h5 className="">Bấm vào tên nhân viên để xem thông tin.</h5>
                 <div className="row">
-                    <StaffDetail selectedStaff={this.state.selectedStaff} />
+                    {staffList}
                 </div>
             </div>
         );
-        
     }
-
-}
+        
 
 export default StaffList;
