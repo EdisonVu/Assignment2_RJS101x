@@ -7,9 +7,11 @@ import dateFormat from 'dateformat'
     function RenderStaff({staff}) {
         if (staff !== null)
             return (
-                <Card>
+            
+                <Card className="col-md-3 col-sm-4 col-12">
                     <CardImg width="100%" src={staff.image} alt={staff.name} />
                 </Card>
+            
             );
         else
             return (
@@ -20,7 +22,7 @@ import dateFormat from 'dateformat'
     function RenderProfile({profile}) {
         if (profile !== null)
             return (
-                <Card className="col-12 col-md-5 m-1">
+                <Card className="col-md-9 col-sm-8 col-12">
                     {profile.map((staffs) => {
                         return (
                             <CardBody key={staffs.id}>

@@ -3,8 +3,10 @@ import StaffDetail from "./StaffDetailComponent";
 import StaffList from "./StaffListComponent";
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
-import { STAFFS } from '../shared/staffs';
+import { DEPARTMENTS, STAFFS } from '../shared/staffs';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import Department from "./DepartmentComponent";
+import Salary from "./SalaryComponent";
 
 
 class Main extends Component {
@@ -13,13 +15,9 @@ class Main extends Component {
 
         this.state = {
             staffs: STAFFS,
-            // selectedStaff: null
+            departments: DEPARTMENTS
         };
     }
-
-    // onStaffSelect(staffId) {
-    //     this.setState({ selectedStaff: staffId });
-    // }
 
     render() {
         const StaffWithId = ({match}) => {
@@ -37,6 +35,8 @@ class Main extends Component {
             <Switch>
                 <Route exact path="/nhan-vien" component={() => <StaffList staffs={this.state.staffs} />} />
                 <Route path="/nhan-vien/:id" component={StaffWithId} />
+                <Route exact path="/phong-ban" component={() => <Department departments={this.state.departments} /> } />
+                <Route exact path="/bang-luong" component={() => <Salary staffs={this.state.staffs} /> } />
                 <Redirect to="/nhan-vien" />
             </Switch>
             <Footer />
