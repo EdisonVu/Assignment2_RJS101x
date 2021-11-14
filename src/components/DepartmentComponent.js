@@ -3,13 +3,6 @@ import { Card, CardTitle, CardText } from 'reactstrap';
 
 
 class Department extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            departmentDetail: null
-        }
-    }
 
     render() {
         const department = this.props.departments.map((item) => {
