@@ -16,8 +16,17 @@ class Main extends Component {
 
         this.state = {
             staffs: STAFFS,
-            departments: DEPARTMENTS
+            departments: DEPARTMENTS,
+            searchText: ''
         };
+    }
+
+    getTextSearch = (text) => {
+        this.setState({
+            searchText: text
+        });
+
+        // console.log(' Dữ liệu nhân được là:' + this.state.searchText)
     }
 
     render() {
@@ -30,15 +39,25 @@ class Main extends Component {
             );
         }
 
+        var results = [];
+        this.state.staffs.forEach((item) => {
+            if(item.name.indexOf(this.state.searchText) !== (-1)) {
+                results.push(item);
+            }
+        })
+        console.log(results);
+
         return (
           <div>
             <Header />
-            <Search />
+            <Search 
+                checkConnectProps = {(text) => this.getTextSearch(text)}
+            />
             <Switch>
-                <Route exact path="/nhan-vien" component={() => <StaffList staffs={this.state.staffs} />} />
+                <Route exact path="/nhan-vien" component={() => <StaffList staffs={results} />} />
                 <Route path="/nhan-vien/:id" component={StaffWithId} />
                 <Route exact path="/phong-ban" component={() => <Department departments={this.state.departments} /> } />
-                <Route exact path="/bang-luong" component={() => <Salary staffs={this.state.staffs} /> } />
+                <Route exact path="/bang-luong" component={() => <Salary staffs={results} /> } />
                 <Redirect to="/nhan-vien" />
             </Switch>
             <Footer />
